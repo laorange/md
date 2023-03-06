@@ -3,7 +3,7 @@
   "private": false,
   "author": "laorange",
   "license": "AGPL-3.0",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite dev",
@@ -12,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "github-fork-ribbon-css": "^0.2.3",
     "github-markdown-css": "^5.2.0",
     "markdown-it": "^13.0.1",
     "pinia": "^2.0.32",

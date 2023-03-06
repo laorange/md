@@ -14,16 +14,20 @@ const markdownIt = new MarkdownIt({
 });
 
 const textInputArea = ref<any>();
-const result = computed(() => markdownIt.render(inputText.value ?? ""));
+const outputText = computed(() => markdownIt.render(inputText.value ?? ""));
 const expandedName = ref<string>("1");
 
 function clearInputText() {
   inputText.value = "";
+  expandedName.value = "1";
   nextTick(() => textInputArea.value?.focus());
 }
 
-function reset() {
-  inputText.value = "";
+function seeOutputText() {
+  expandedName.value = "2";
+}
+
+function editInputText() {
   expandedName.value = "1";
   nextTick(() => textInputArea.value?.focus());
 }
@@ -33,29 +37,33 @@ function reset() {
   <div class="markdown-parser w-full">
     <n-collapse v-model:expanded-names="expandedName" accordion display-directive="show">
       <n-collapse-item title="输入文本" name="1" :disabled="!inputText">
-        <n-input ref="textInputArea"
-                 type="textarea"
-                 :show-count="true"
-                 placeholder="在这里输入文本"
-                 size="large"
-                 autofocus
-                 :autosize="{minRows: 5}"
-                 v-model:value.lazy="inputText"/>
+        <div class="-mx-2">
+          <n-input ref="textInputArea"
+                   type="textarea"
+                   :show-count="true"
+                   placeholder="在这里输入文本"
+                   size="large"
+                   autofocus
+                   :autosize="{minRows: 5}"
+                   v-model:value.lazy="inputText"/>
+        </div>
 
-        <div class="w-full flex justify-center mt-2 space-x-8">
-          <n-button size="large" :disabled="!result" @click="expandedName = '2'" type="success">输出</n-button>
-          <n-button size="large" :disabled="!result" @click="clearInputText" type="warning">清空</n-button>
+        <div class="absolute-button-group">
+          <n-button size="large" :disabled="!outputText" @click="seeOutputText" type="success">输出</n-button>
+          <n-button size="large" :disabled="!outputText" @click="clearInputText" type="warning">清空</n-button>
         </div>
       </n-collapse-item>
-      <n-collapse-item v-if="result" title="输出结果" name="2">
-        <div class="flex-[1] border-[1px] rounded-sm min-h-[140px] px-4 py-2">
+
+      <n-collapse-item v-if="outputText" title="输出结果" name="2">
+        <div class="flex-[1] px-4 py-2 -mx-2 pb-16 md:pb-32 lg:pb-48">
           <div class="markdown-body">
-            <div v-html="result"/>
+            <div v-html="outputText"/>
           </div>
         </div>
 
-        <div class="w-full flex justify-center mt-2 space-x-8">
-          <n-button size="large" :disabled="!result" @click="reset" type="warning">重新输入</n-button>
+        <div class="absolute-button-group">
+          <n-button size="large" :disabled="!outputText" @click="editInputText" type="info">编辑内容</n-button>
+          <n-button size="large" :disabled="!outputText" @click="clearInputText" type="warning">重新输入</n-button>
         </div>
       </n-collapse-item>
     </n-collapse>
@@ -63,5 +71,19 @@ function reset() {
 </template>
 
 <style scoped>
+.markdown-body {
+  @apply bg-transparent;
+}
 
+.absolute-button-group {
+  @apply fixed;
+  @apply bottom-8;
+  @apply md:bottom-24;
+  @apply lg:bottom-32;
+  @apply left-0;
+  @apply w-full;
+  @apply justify-center;
+  @apply flex;
+  @apply space-x-8;
+}
 </style>

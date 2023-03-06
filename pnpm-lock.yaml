@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@vitejs/plugin-vue': ^3.2.0
   autoprefixer: ^10.4.13
+  github-fork-ribbon-css: ^0.2.3
   github-markdown-css: ^5.2.0
   markdown-it: ^13.0.1
   naive-ui: ^2.34.3
@@ -20,6 +21,7 @@ specifiers:
   vue-tsc: ^1.2.0
 
 dependencies:
+  github-fork-ribbon-css: 0.2.3
   github-markdown-css: 5.2.0
   markdown-it: 13.0.1
   pinia: 2.0.32_hmuptsblhheur2tugfgucj7gc4
@@ -816,6 +818,10 @@ packages:
   /function-bind/1.1.1:
     resolution: {integrity: sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==}
     dev: true
+
+  /github-fork-ribbon-css/0.2.3:
+    resolution: {integrity: sha512-cmGBV4sivRwmnteSOkqMjN2cnP5/J1SU5aDCVYsBWHmDokZ/JjwGEkduCxY9IULHdCPpw1WSk5Cy8N1LF6jOEw==}
+    dev: false
 
   /github-markdown-css/5.2.0:
     resolution: {integrity: sha512-hq5RaCInSUZ48bImOZpkppW2/MT44StRgsbsZ8YA4vJFwLKB/Vo3k7R2t+pUGqO+ThG0QDMi96TewV/B3vyItg==}
