@@ -2,6 +2,7 @@
 // @ts-ignore
 import MarkdownIt from "markdown-it";
 import {computed, nextTick, ref} from "vue";
+import "github-markdown-css/github-markdown.css";
 
 const inputText = ref<string | null>(null);
 
@@ -47,8 +48,10 @@ function reset() {
         </div>
       </n-collapse-item>
       <n-collapse-item v-if="result" title="输出结果" name="2">
-        <div class="flex-[1] bg-gray-100 border-[1px] rounded-sm min-h-[140px] px-4 py-2">
-          <div v-html="result"/>
+        <div class="flex-[1] border-[1px] rounded-sm min-h-[140px] px-4 py-2">
+          <div class="markdown-body">
+            <div v-html="result"/>
+          </div>
         </div>
 
         <div class="w-full flex justify-center mt-2 space-x-8">
